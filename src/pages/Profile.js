@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Button } from 'react-bootstrap'
 import { useForm } from "react-hook-form";
+import BtnDr from '../components/BtnDr';
 import { notifyError, notifySuccess } from '../helpers/notifications';
 import { getAllStates, getStateBySigla, loggedUser } from '../helpers/utils';
 import api from "../services/api"
@@ -19,8 +20,12 @@ function Profile() {
         await api.get(`/users/${theUser.id}/addresses`).then(res => {
             console.log("Sucesso");
             console.log(res);
-            selectState(res.data.addresses[0].state)
-            setAddress(res.data.addresses[0]);
+            if(res.data.addresses[0]){
+                selectState(res.data.addresses[0].state)
+                setAddress(res.data.addresses[0]);
+            }else {
+                setAddress({});
+            }
 
             
         }).catch(error => {
@@ -79,9 +84,8 @@ function Profile() {
         return (<></>)
     }
     return (
-                <Form onSubmit={handleSubmit(onSubmit)}>
+                <Form style={{maxWidth: 500, marginTop: 160}} className="drspa-form mx-auto" onSubmit={handleSubmit(onSubmit)}>
                     <Form.Group controlId="form-state">
-                        <Form.Label>Estado:</Form.Label>
                         <Form.Control onChange={(event)=>{selectState(event.target.value)}} defaultValue={currentAddress.state} as="select" name="state" ref={register({ required: true })}>
                             <Options list={getAllStates()} />
                         </Form.Control>
@@ -89,34 +93,31 @@ function Profile() {
 
                     </Form.Group>
                     <Form.Group controlId="form-city">
-                        <Form.Label>Cidade:</Form.Label>
                         <Form.Control as="select" name="city" defaultValue={currentAddress.city} ref={register({ required: true })}>
+                            <option  value="">Cidade... </option>
                             <OptionsCities list={country.cidades} />
                         </Form.Control>
                         {errors.city && errors.city.type === "required" && <span>Campo necessário</span>}
 
                     </Form.Group>
                     <Form.Group controlId="form-cep">
-                        <Form.Label>Cep:</Form.Label>
-                        <Form.Control placeholder="00000-000" name="zipcode" defaultValue={currentAddress.zipcode} ref={register({ required: true })}/>
+                        <Form.Control placeholder="Cep" name="zipcode" type="number" defaultValue={currentAddress.zipcode} ref={register({ required: true })}/>
                         {errors.zipcode && errors.zipcode.type === "required" && <span>Campo necessário</span>}
 
                     </Form.Group>
                     <Form.Group controlId="form-street">
-                        <Form.Label>Rua:</Form.Label>
-                        <Form.Control placeholder="" name="street" defaultValue={currentAddress.street} ref={register({ required: true })}/>
+                        <Form.Control placeholder="Rua" name="street" defaultValue={currentAddress.street} ref={register({ required: true })}/>
                         {errors.street && errors.street.type === "required" && <span>Campo necessário</span>}
 
                     </Form.Group>
                     <Form.Group controlId="form-neigh">
-                        <Form.Label>Bairro:</Form.Label>
-                        <Form.Control placeholder="" name="neigh" defaultValue={currentAddress.neigh} ref={register({ required: true })}/>
+                        <Form.Control placeholder="Bairro" name="neigh" defaultValue={currentAddress.neigh} ref={register({ required: true })}/>
                         {errors.neigh && errors.neigh.type === "required" && <span>Campo necessário</span>}
 
                     </Form.Group>
-                    <Button variant="primary" type="submit">
+                    <BtnDr type="submit">
                         Registrar
-                    </Button>
+                    </BtnDr>
                 </Form>
     )
 }
@@ -127,7 +128,7 @@ function Options({list}) {
     }
     return(
         <>
-            <option  value="">Selecione... </option>
+            <option  value="">Estado... </option>
             {list.map((item, index) => (
                 <option key={`state-${index}`} value={item.sigla}> {item.nome} </option>
             ))}
@@ -141,7 +142,6 @@ function OptionsCities({list}) {
     }
     return(
         <>
-            <option  value="">Selecione... </option>
             {list.map((item, index) => (
                 <option key={`city-${index}`} value={item}> {item} </option>
             ))}

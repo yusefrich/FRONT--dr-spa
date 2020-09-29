@@ -3,6 +3,12 @@ import { Col, Row, Form, Button } from 'react-bootstrap'
 import { useForm } from "react-hook-form";
 import { notifyError, notifySuccess } from '../helpers/notifications';
 import api from "../services/api"
+import BgLeft from "../components/BgLeft"
+import FormTitle from '../components/FormTitle';
+import BtnDr from '../components/BtnDr';
+import FormSpan from '../components/FormSpan';
+
+
 
 export default function Login (props) {
 
@@ -30,27 +36,31 @@ export default function Login (props) {
     };
     return (
         <Row>
-            <Col sm={3}>
-                <h1>LOGIN</h1>
+            <BgLeft/>
+            <Col sm={4}>
+                <div className="mx-5 position-relative text-center">
+
+                    <img className="mt-5 pt-5" src={require("../img/d-brand.png")} width="190px" height="auto" alt=""/>
+                    <h1 className="text-white mt-5 font-weight-light">LOGIN</h1>
+                </div>
             </Col>
-            <Col sm={9}>
-                <Form onSubmit={handleSubmit(onSubmit)}>
+            <Col sm={8}>
+                <Form style={{maxWidth: 500, marginTop: 160}} className="drspa-form mx-auto" onSubmit={handleSubmit(onSubmit)}>
+                    <FormTitle><p style={{color: "#fafafa"}} className="mb-0 text-uppercase font-weight-bold">Seus Dados</p></FormTitle>
                     <Form.Group controlId="form-email">
-                        <Form.Label>Email:</Form.Label>
                         <Form.Control placeholder="Email cadastrado" name="email" ref={register({ required: true })}/>
-                        {errors.email && errors.email.type === "required" && <span>Campo necessário</span>}
+                        {errors.email && errors.email.type === "required" && <FormSpan>Campo necessário*</FormSpan>}
 
                     </Form.Group>
                     <Form.Group controlId="form-password">
-                        <Form.Label>Senha:</Form.Label>
                         <Form.Control placeholder="********" type="password" name="password" ref={register({ required: true })}/>
-                        {errors.password && errors.password.type === "required" && <span>Campo necessário</span>}
+                        {errors.password && errors.password.type === "required" && <FormSpan>Campo necessário*</FormSpan>}
 
                     </Form.Group>
 
-                    <Button variant="primary" type="submit">
+                    <BtnDr type="submit">
                         Login
-                    </Button>
+                    </BtnDr>
                 </Form>
             </Col>
         </Row>

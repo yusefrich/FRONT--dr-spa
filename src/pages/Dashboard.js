@@ -11,6 +11,8 @@ import {
   } from "react-router-dom";
 import Profile from './Profile';
 import ClientsList from './ClientsList';
+import BgLeftSm from '../components/BgLeftSm';
+import DrPlaceholder from '../components/DrPlaceholder';
   
 
 function PrivateRoute({ children, hasPerm, ...rest }) {
@@ -46,6 +48,9 @@ function Dashboard() {
         console.log(theUser);
 
     }
+    const prevent = (e) =>{
+        e.preventDefault();
+    }
 
     let { path, url } = useRouteMatch();
 
@@ -59,48 +64,53 @@ function Dashboard() {
 
     return (
         <Row>
+            <BgLeftSm/>
             <Col sm={3}>
-                <h1>dashboard</h1>
-                <ul>
+            <div className="mx-5 position-relative text-center">
+
+                <img style={{borderRadius: 90, marginTop: 90}} src={require("../img/profile-default.jpg")} width="80" height="auto" alt=""/>
+                <h2 className="text-white mt-5 font-weight-light">Yusef Richard</h2>
+            </div>
+                <ul className="list-unstyled mt-5">
                     <li>
-                        <Link to={`${url}/perfil`}>Perfil</Link>
+                        <Link className="drspa-btn-block text-uppercase" to={`${url}/perfil`}>Perfil</Link>
                     </li>
                     <li>
-                        <Link to={`${url}/mensagens`}>Mensagens</Link>
+                        <Link className="drspa-btn-block text-uppercase disabled">Mensagens</Link>{/* to={`${url}/mensagens` */}
                     </li>
                     <li hidden={isAdmin()}>
-                        <Link  to={`${url}/agendar`}>Agendar Consulta</Link>
+                        <Link  className="drspa-btn-block text-uppercase disabled" >Agendar Consulta</Link>{/* to={`${url}/agendar`} */}
                     </li>
                     <li hidden={isAdmin()}>
-                        <Link to={`${url}/consultas`}>Minhas Consultas</Link>
+                        <Link className="drspa-btn-block text-uppercase disabled" >Minhas Consultas</Link>{/* to={`${url}/consultas`} */}
                     </li>
                     <li>
-                        <Link to={`${url}/eventos`}>Eventos</Link>
+                        <Link className="drspa-btn-block text-uppercase disabled" >Eventos</Link>{/* to={`${url}/eventos`} */}
                     </li>
                     <li hidden={!isAdmin()}>
-                        <Link to={`${url}/clientes`}>Clientes</Link>
+                        <Link className="drspa-btn-block text-uppercase" to={`${url}/clientes`}>Clientes</Link>
                     </li>
                 </ul>
             </Col>
             <Col sm={9}>
                 <Switch>
                     <Route exact path={path}>
-                        <h3>Seu dashboard.</h3>
+                        <DrPlaceholder>Seu dashboard.</DrPlaceholder>
                     </Route>
                     <Route path={`${path}/perfil`}>
                         <Profile/>
                     </Route>
                     <Route path={`${path}/mensagens`}>
-                        <h3>Em desenvolvimento...</h3>
+                        <DrPlaceholder>Em desenvolvimento...</DrPlaceholder>
                     </Route>
                     <PrivateRoute hasPerm={!isAdmin()} path={`${path}/agendar`}>
-                        <h3>Em desenvolvimento...</h3>
+                        <DrPlaceholder>Em desenvolvimento...</DrPlaceholder>
                     </PrivateRoute>
                     <PrivateRoute hasPerm={!isAdmin()} path={`${path}/consultas`}>
-                        <h3>Em desenvolvimento...</h3>
+                        <DrPlaceholder>Em desenvolvimento...</DrPlaceholder>
                     </PrivateRoute>
                     <Route path={`${path}/eventos`}>
-                        <h3>Em desenvolvimento...</h3>
+                        <DrPlaceholder>Em desenvolvimento...</DrPlaceholder>
                     </Route>
                     <PrivateRoute hasPerm={isAdmin()} path={`${path}/clientes`}>
                         <ClientsList/>

@@ -1,0 +1,35 @@
+@mixin break-point-up($point) {
+    @if $point == desktop {
+        @media (min-width: 1200px) { @content; }
+    }
+    @else if $point == laptop {
+        @media (min-width: 992px) { @content; }
+    }
+    @else if $point == tablet {
+        @media (min-width: 768px) { @content; }
+    }
+    @else if $point == phablet {
+        @media (min-width: 576px)  { @content; }
+    }
+    @else if $point == mobile {
+        @media (min-width: 320px)  { @content; }
+    }
+}
+
+@mixin break-point-down($point) {
+    @if $point == desktop {
+        @media (max-width: 1199.98px) { @content; }
+    }
+    @else if $point == laptop {
+        @media (max-width: 991.98px) { @content; }
+    }
+    @else if $point == tablet {
+        @media (max-width: 767.98px) { @content; }
+    }
+    @else if $point == phablet {
+        @media (max-width: 575.98px)  { @content; }
+    }
+    @else if $point == mobile {
+        @media (max-width: 381px)  { @content; }
+    }
+}

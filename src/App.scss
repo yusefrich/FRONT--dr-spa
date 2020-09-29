@@ -1,0 +1,221 @@
+@import "./styles/breakpoints";
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@100;200;300;400;500;600;700;800&display=swap');
+*{
+  /* font-family:'Dosis', sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; */
+  font-family: 'Open Sans', sans-serif;
+
+}
+body{
+  background-color: #eee !important;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+
+
+h1{
+    font-weight: 300;
+    line-height: 110%;
+    letter-spacing: 0.13em;
+    @include break-point-down (phablet){
+        font-weight: normal;
+        font-size: 31px;
+    }
+    @include break-point-down (mobile){
+        font-size: 26px;
+    }
+}
+h2{
+    font-weight: normal;
+    line-height: 110%;
+    @include break-point-down (phablet){
+        font-weight: 500;
+        font-size: 26px;
+    }
+    @include break-point-down (mobile){
+        font-size: 23px;
+    }
+
+}
+h3{
+    font-weight: 500;
+    line-height: 110%;
+    letter-spacing: 0.13em;
+}
+h4{
+    font-weight: normal;
+    line-height: 110%;
+    letter-spacing: 0.13em;
+}
+p{
+    font-family: 'Open Sans', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 150%;
+}
+small{
+    font-family: 'Dosis', sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 110%;
+    letter-spacing: 0.13em;
+}
+
+
+
+
+.drspa-form{
+  .form-group{
+      margin-bottom: 0;
+      position: relative;
+  }
+  input{
+      background-color: #fff;
+      color: #427CA3;
+      border-radius: 0;
+      border: none;
+      padding: 25px 24px;
+      margin-top: 5px;
+
+      font-style: normal;
+      font-weight: normal;
+      font-size: 17px;
+      line-height: 110%;
+
+  }
+  input:focus{
+      background: #427ca33b;
+      color: #427CA3;
+      box-shadow: none !important;
+      border: #427CA3 !important;
+  }
+  input:focus~{
+      box-shadow: none !important;
+  }
+  input::placeholder{
+      color: #427CA3;
+      opacity: 0.5;
+  }
+  select{
+      background-color: #fff;
+      color: #427CA3;
+      border-radius: 0;
+      border: none;
+      padding: 0px 24px;
+      margin-top: 5px;
+      height: 51px;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 17px;
+      line-height: 110%;
+
+  }
+  select:focus{
+      background-color: #427ca33b;
+      color: #427CA3;
+      box-shadow: none !important;
+      border: #427CA3 !important;
+  }
+  select:focus~{
+      box-shadow: none !important;
+  }
+  select::placeholder{
+      color: #427CA3;
+      opacity: 0.5;
+  }
+  .custom-control-label:before{
+      border-radius: 0;
+      border: 1px solid #427CA3;
+      padding: 8px;
+      color: #333333;
+      background-color:transparent;
+  }
+  .custom-checkbox .custom-control-input:checked~.custom-control-label::before{
+      color: #333333;
+      background-color:#427CA3;
+      box-shadow: none !important;
+      border: 1px solid #427CA3 !important;
+  }
+  .custom-checkbox .custom-control-input:checked~.custom-control-label::after{
+      background-image:url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='%23333333' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3E%3C/svg%3E");
+  }
+  
+}
+
+.drs-link{
+    color: rgba(0,0,0,.4);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+}
+.drs-link:hover{
+    color: rgba(0,0,0,.9);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+}
+.drspa-btn-block{
+  text-decoration: none;
+  color: #fff;
+  padding: 10px;
+  width: 100%;
+  border: 2px solid #fff;
+  border-radius: 0;
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  font-family: 'Open Sans',Helvetica,Arial,Lucida,sans-serif;
+  font-weight: 700;
+  letter-spacing: 3px;
+  margin-top: 15px;
+}
+.drspa-btn-block:hover{
+  color: #427CA3;
+  background: #fff;
+  text-decoration: none;
+
+}
+.disabled{
+  opacity: .3;
+}
