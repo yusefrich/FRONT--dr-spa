@@ -7,7 +7,7 @@ import axios from 'axios';
 */
 
 const api = axios.create({
-    baseURL: 'http://99.79.191.3:3333'
+    baseURL: 'https://api.drspa.gq'
 });
 
 api.interceptors.request.use(async config => {
