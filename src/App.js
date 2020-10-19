@@ -10,7 +10,7 @@ import Login from "./pages/Login"
 import Register from "./pages/Register"
 import Dashboard from "./pages/Dashboard"
 import './App.scss';
-import { Nav, Navbar, Container } from 'react-bootstrap';
+import { Nav, Navbar, Container, Row } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function PrivateRoute({ children, isAuth, ...rest }) {
@@ -76,6 +76,23 @@ function App() {
         </Container>
       </Navbar>
       <Container fluid>
+          <div className="leaf-holder">
+            <img
+              src={require("./img/folha-2.png")}
+              width="50"
+              height="auto"
+              className="leaf-detail-left"
+              alt="leaf detail"
+            />
+            {/* <img
+              src={require("./img/folha.png")}
+              width="50"
+              height="auto"
+              className="leaf-detail-right"
+              alt="leaf detail"
+            /> */}
+          </div>
+
         <Switch>
           <Route path="/registro" children={<Register/>}/>
           {/* <Route exact path="/login"  render={(props) => <Login login={()=>{setIsAuth(true)}} />} /> */}

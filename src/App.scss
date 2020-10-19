@@ -219,3 +219,24 @@ small{
 .disabled{
   opacity: .3;
 }
+
+.leaf-detail-left{
+  position: absolute;
+  left: -80px;
+  width: 300px;
+  bottom: 0;
+  z-index: 30;
+}
+.leaf-detail-right{
+  position: absolute;
+  right: -80px;
+  width: 300px;
+  bottom: 0;
+  z-index: 30;
+
+}
+.leaf-holder{
+  overflow: hidden;
+  left: 0;
+  right: 0;
+}

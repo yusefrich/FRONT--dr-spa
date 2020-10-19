@@ -46,7 +46,7 @@ function ClientsList() {
 
     return (
 
-        <Table striped bordered hover>
+        <Table style={{width: "90%", margin: 40}} striped bordered hover>
             <thead>
                 <tr>
                     <th>#</th>
